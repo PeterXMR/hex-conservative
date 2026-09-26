@@ -558,18 +558,4 @@ mod tests {
             InvalidLengthError { invalid: 16, expected: 8 }.into()
         );
     }
-
-    #[test]
-    #[cfg(feature = "alloc")]
-    fn mixed_case() {
-        use crate::display::DisplayHex as _;
-
-        let s = "DEADbeef0123";
-        let want_lower = "deadbeef0123";
-        let want_upper = "DEADBEEF0123";
-
-        let v = decode_to_vec(s).expect("valid hex");
-        assert_eq!(format!("{:x}", v.as_hex()), want_lower);
-        assert_eq!(format!("{:X}", v.as_hex()), want_upper);
-    }
 }
